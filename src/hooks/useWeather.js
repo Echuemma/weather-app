@@ -1,8 +1,6 @@
-// src/hooks/useWeather.js
 import { useState, useEffect, useCallback } from 'react';
 import WeatherService from '../api/weatherService';
 
-// Hook for current weather by city
 export const useCurrentWeather = (cityName, autoFetch = true) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -35,7 +33,6 @@ export const useCurrentWeather = (cityName, autoFetch = true) => {
   return { data, loading, error, refetch: fetchWeather };
 };
 
-// Hook for current location weather
 export const useCurrentLocationWeather = (autoFetch = true) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -66,7 +63,6 @@ export const useCurrentLocationWeather = (autoFetch = true) => {
   return { data, loading, error, refetch: fetchCurrentLocationWeather };
 };
 
-// Hook for multiple locations weather
 export const useMultipleLocationsWeather = (locations, autoFetch = true) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -103,7 +99,6 @@ export const useMultipleLocationsWeather = (locations, autoFetch = true) => {
   return { data, loading, error, refetch: fetchMultipleWeather };
 };
 
-// Hook for historical weather
 export const useHistoricalWeather = (location, date, autoFetch = true) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -135,12 +130,11 @@ export const useHistoricalWeather = (location, date, autoFetch = true) => {
   return { data, loading, error, refetch: fetchHistoricalWeather };
 };
 
-// Enhanced hook for location search with smart error handling
 export const useLocationSearch = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [hasApiAccess, setHasApiAccess] = useState(true); // Track API access status
+  const [hasApiAccess, setHasApiAccess] = useState(true); 
 
   const searchLocation = useCallback(async (query) => {
     if (!query || query.length < 2) {
@@ -148,7 +142,6 @@ export const useLocationSearch = () => {
       return;
     }
     
-    // Don't search if we know API access is restricted
     if (!hasApiAccess) {
       return;
     }
@@ -159,12 +152,11 @@ export const useLocationSearch = () => {
     try {
       const result = await WeatherService.searchLocation(query);
       setResults(result.results || []);
-      setHasApiAccess(true); // Reset if successful
+      setHasApiAccess(true);
     } catch (err) {
-      // Check if it's an API access restriction error
       if (err.message.includes('Access Restricted') || err.message.includes('Subscription Plan')) {
         setHasApiAccess(false);
-        setError(null); // Don't set error for API restriction
+        setError(null); 
       } else {
         setError(err.message);
       }
@@ -189,22 +181,20 @@ export const useLocationSearch = () => {
   };
 };
 
-// Enhanced hook for smart location identifiers with integrated search logic
 export const useLocationIdentifiers = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
 
-  // Get hooks
+
   const locationSearch = useLocationSearch();
   const weather = useCurrentWeather(selectedLocation, false);
 
-  // Handle search input changes
+
   const handleSearchInputChange = useCallback((value) => {
     setSearchQuery(value);
     
-    // Clear results and reset state when input is cleared
     if (value.length === 0) {
       locationSearch.clearResults();
       setShowSearchResults(false);
@@ -221,7 +211,6 @@ export const useLocationIdentifiers = () => {
     setSelectedLocation(searchQuery.trim());
     setShowSearchResults(false);
 
-    // Try location search if API access is available
     if (locationSearch.hasApiAccess) {
       await locationSearch.searchLocation(searchQuery.trim());
       setShowSearchResults(locationSearch.results.length > 0);

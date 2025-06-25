@@ -1,4 +1,3 @@
-// File: components/OtherCities.jsx
 import React from 'react';
 import { CloudRain, Sun } from 'lucide-react';
 

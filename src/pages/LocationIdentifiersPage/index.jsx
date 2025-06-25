@@ -99,7 +99,6 @@ const LocationIdentifiersPage = () => {
         </form>
       </div>
 
-      {/* API Access Warning */}
       {shouldShowApiWarning && (
         <div className="bg-yellow-900 border border-yellow-700 rounded-lg p-4">
           <div className="flex items-center space-x-2 text-yellow-200">
@@ -123,7 +122,6 @@ const LocationIdentifiersPage = () => {
         </div>
       )}
 
-      {/* Loading State */}
       {weatherLoading && (
         <div className="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
           <div className="flex items-center justify-center space-x-3 text-gray-400">
@@ -133,7 +131,6 @@ const LocationIdentifiersPage = () => {
         </div>
       )}
 
-      {/* Location Information Display */}
       {weatherData && !weatherLoading && (
         <div className="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
           <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
@@ -141,7 +138,7 @@ const LocationIdentifiersPage = () => {
             Location Information
           </h3>
 
-          {/* Location Header */}
+
           <div className="mb-6 p-4 bg-gray-700 rounded-lg">
             <h4 className="text-xl font-bold text-white">
               {weatherData.location.name}
@@ -153,7 +150,6 @@ const LocationIdentifiersPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Coordinates */}
             <div className="space-y-2">
               <label className="flex items-center text-sm font-medium text-gray-300">
                 <Navigation className="w-4 h-4 mr-2" />
@@ -167,7 +163,6 @@ const LocationIdentifiersPage = () => {
               </p>
             </div>
 
-            {/* Time Zone */}
             <div className="space-y-2">
               <label className="flex items-center text-sm font-medium text-gray-300">
                 <Clock className="w-4 h-4 mr-2" />
@@ -181,7 +176,6 @@ const LocationIdentifiersPage = () => {
               </p>
             </div>
 
-            {/* Local Time */}
             <div className="space-y-2">
               <label className="flex items-center text-sm font-medium text-gray-300">
                 <Globe className="w-4 h-4 mr-2" />
@@ -195,7 +189,6 @@ const LocationIdentifiersPage = () => {
               </p>
             </div>
 
-            {/* Weather Station Info */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-300">
                 Current Temperature
@@ -208,7 +201,6 @@ const LocationIdentifiersPage = () => {
               </p>
             </div>
 
-            {/* Additional Weather Data */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-300">
                 Humidity & Pressure
@@ -221,7 +213,6 @@ const LocationIdentifiersPage = () => {
               </p>
             </div>
 
-            {/* Wind Information */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-300">
                 Wind Information
@@ -235,7 +226,6 @@ const LocationIdentifiersPage = () => {
             </div>
           </div>
 
-          {/* Raw Coordinates for Copy */}
           <div className="mt-6 p-4 bg-gray-700 rounded-lg">
             <h4 className="text-sm font-medium text-gray-300 mb-2">
               Raw Coordinates (for API usage)
@@ -255,7 +245,6 @@ const LocationIdentifiersPage = () => {
         </div>
       )}
 
-      {/* Usage Examples */}
       <div className="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
         <h3 className="text-xl font-semibold text-white mb-4">Usage Examples</h3>
         <div className="space-y-3 text-sm">
